@@ -1,0 +1,63 @@
+<%= form_for(record) do |f| %>
+  <% if record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.label :title %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.text_field :title, :class => "form-control" %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.label :body %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.text_area :body, :class => "form-control" %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.label :project %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.text_field :project, :class => "form-control", :placeholder => "optional" %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.label :technology %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.text_field :technology, :class => "form-control", :placeholder => "optional" %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="actions">
+      <%= f.submit "Enter",:class =>"btn btn-success btn-sm" %>
+    </div>
+  </div>
+<% end %>
