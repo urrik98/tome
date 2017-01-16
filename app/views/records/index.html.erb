@@ -6,26 +6,53 @@
       <input class="form-control" type="search" placeholder="search for a record" />
     </div>
     <div class="col-sm-3 col-sm-offset-1">
-      <%= link_to "Create a new record", new_record_path, :class =>"btn btn-sm btn-success" %>
+      <%= link_to "Create a new record", new_record_path, :class =>"btn btn-sm", :style => "color:white;background-color:#996515;" %>
     </div>
   </div>
 
-  <br>
+  <hr>
 
   <div class="row">
-    <div class="col-sm-2 col-sm-offset-1">
-      <h6>Most frequently viewed</h6>
+    <div class="col-sm-10 col-sm-offset-1">
+      <h5><%= @records.count %>&nbsp;total records</h5>
     </div>
-    <div class="col-sm-2 col-sm-offset-1">
-      <h6>Recently viewed</h6>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h3>Tags</h3>
+      <% @topics.each do |t| %>
+        <h5 style="display:inline;"><%= link_to t.name+':'+t.records.count.to_s, topic_path(t.id), :class=>"btn btn-xs", :style=>"background-color:purple;color:white;" %></h5>&nbsp;
+      <% end %>
     </div>
-    <div class="col-sm-2 col-sm-offset-1">
-      <h6>Recently added</h6>
-      <ul style="list-style-type:none; padding:0;">
-        <% @recently_added.each do |ra| %>
-          <li><%= link_to ra.title, record_path(ra.id) %></li>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-1">
+      <h5>Most frequently viewed</h5>
+        <% @frequently_viewed.each do |fv| %>
+          <p>><%= link_to fv.title, record_path(fv.id) %></p>
         <% end %>
-      </ul>
+    </div>
+    <div class="col-sm-3 col-sm-offset-1">
+      <h5>Recently viewed</h5>
+        <% @recently_viewed.each do |rv| %>
+          <p>><%= link_to rv.title, record_path(rv.id) %></p>
+        <% end %>
+    </div>
+    <div class="col-sm-3 col-sm-offset-1">
+      <h5>Recently added</h5>
+        <% @recently_added.each do |ra| %>
+          <div style="border:1px solid grey; border-radius:10px;padding:3px;padding-left:5px;">><%= link_to ra.title, record_path(ra.id) %><br>
+            <% ra.topics.each do |ratop| %>
+              <%= link_to ratop.name+' ', topic_path(ratop.id), :class=>"btn btn-xs", :style => "background-color:purple; color:white;" %>&nbsp;
+            <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 

@@ -5,7 +5,10 @@ class RecordsController < ApplicationController
   # GET /records.json
   def index
     @records = Record.all
-    @recently_added = Record.all.sort
+    @recently_added = Record.order("created_at DESC").limit(15)
+    @frequently_viewed = Record.order("times_viewed DESC").limit(15)
+    @recently_viewed = Record.order("updated_at DESC").limit(15)
+    @topics = Topic.all
   end
 
   # GET /records/1
@@ -26,11 +29,22 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = Record.new(record_params)
-    techs = @record.technology.split(';')
-    @record.technology = techs
+    @record.times_viewed = 0
+    @tags = @record.technology.split(', ')
+
 
     respond_to do |format|
       if @record.save
+        @tags.each do |t|
+          if Topic.where(name: t.downcase).exists?
+            topic = Topic.where(name: t.downcase)
+            tag = @record.tags.new(topic_id: topic.id)
+            tag.save
+          else
+            @topic = Topic.create(name: t.downcase)
+            @record.tags.create(topic_id: @topic.id)
+          end
+        end
         format.html { redirect_to @record, notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
       else
@@ -68,6 +82,7 @@ class RecordsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_record
       @record = Record.find(params[:id])
+      @record.update_attribute(:times_viewed, @record.times_viewed + 1)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

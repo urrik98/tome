@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h2><%= @topic.name %></h2>
+      <br>
+      <% @topic.records.each do |r| %>
+        <p><%= link_to r.title, record_path(r.id) %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

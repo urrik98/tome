@@ -10,16 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114030440) do
+ActiveRecord::Schema.define(version: 20170116010927) do
 
   create_table "records", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.text     "title"
     t.text     "body"
     t.text     "project"
     t.integer  "times_viewed"
     t.text     "technology"
+    t.boolean  "ruby"
+    t.boolean  "ruby_on_rails"
+    t.boolean  "html"
+    t.boolean  "css"
+    t.boolean  "linux"
+    t.boolean  "deployment"
+    t.boolean  "php"
+    t.boolean  "sql"
+    t.boolean  "mysql"
+    t.boolean  "postgresql"
+    t.boolean  "javascript"
+    t.boolean  "jquery"
+    t.boolean  "nodejs"
+    t.boolean  "osx"
+    t.boolean  "sqlite3"
+    t.boolean  "testing"
+    t.boolean  "algorithm"
+    t.boolean  "windows"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "record_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_id"], name: "index_tags_on_record_id"
+    t.index ["topic_id"], name: "index_tags_on_topic_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.text     "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
