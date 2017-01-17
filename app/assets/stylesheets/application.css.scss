@@ -15,3 +15,39 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ .title-link {
+   font-style:italic;
+   color:black;
+   :hover {
+     background-color: white;
+     text-decoration: none;
+   }
+ }
+
+ .btn-tag {
+   background-color:#003F87;
+   color:white!important;
+   border:1px solid white;
+ }
+
+ .index-list-box {
+   border:1px solid grey;
+   border-radius:10px;
+   padding-bottom:20px;
+   background-color: #e4e4e4;
+ }
+
+ .index-list-entry {
+   border:1px solid grey;
+   border-radius:5px;
+   padding:3px;
+   padding-left:5px;
+   background-color: white;
+ }
+
+ .list-item-link:hover {
+   background-color:white;
+   font-weight: bold;
+   text-decoration: none;
+ }

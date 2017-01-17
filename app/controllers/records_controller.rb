@@ -37,9 +37,9 @@ class RecordsController < ApplicationController
       if @record.save
         @tags.each do |t|
           if Topic.where(name: t.downcase).exists?
-            topic = Topic.where(name: t.downcase)
-            tag = @record.tags.new(topic_id: topic.id)
-            tag.save
+            @topic = Topic.find_by name: t.downcase
+            @tag = @record.tags.new(topic_id: @topic.id)
+            @tag.save
           else
             @topic = Topic.create(name: t.downcase)
             @record.tags.create(topic_id: @topic.id)

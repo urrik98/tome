@@ -6,14 +6,9 @@
       <input class="form-control" type="search" placeholder="search for a record" />
     </div>
     <div class="col-sm-3 col-sm-offset-1">
-      <%= link_to "Create a new record", new_record_path, :class =>"btn btn-sm", :style => "color:white;background-color:#996515;" %>
+      <%= link_to "Create a new record", new_record_path, :class =>"btn btn-sm btn-tag" %>
     </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1">
+    <div class="col-sm-2 col-sm-offset-2">
       <h5><%= @records.count %>&nbsp;total records</h5>
     </div>
   </div>
@@ -24,7 +19,7 @@
     <div class="col-sm-10 col-sm-offset-1">
       <h3>Tags</h3>
       <% @topics.each do |t| %>
-        <h5 style="display:inline;"><%= link_to t.name+':'+t.records.count.to_s, topic_path(t.id), :class=>"btn btn-xs", :style=>"background-color:purple;color:white;" %></h5>&nbsp;
+        <h5 style="display:inline;"><%= link_to t.name+':'+t.records.count.to_s, topic_path(t.id), :class=>"btn btn-xs btn-tag" %></h5>&nbsp;
       <% end %>
     </div>
   </div>
@@ -32,32 +27,40 @@
   <hr>
 
   <div class="row">
-    <div class="col-sm-3 col-sm-offset-1">
+    <div class="col-sm-3 col-sm-offset-1 index-list-box">
       <h5>Most frequently viewed</h5>
         <% @frequently_viewed.each do |fv| %>
-          <p>><%= link_to fv.title, record_path(fv.id) %></p>
+          <div class="index-list-entry">><%= link_to fv.title, record_path(fv.id), :class=>"list-item-link" %><br>
+            <% fv.topics.each do |fvtop| %>
+              <%= link_to fvtop.name+' ', topic_path(fvtop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
+            <% end %>
+          </div>
         <% end %>
     </div>
-    <div class="col-sm-3 col-sm-offset-1">
+    <div class="col-sm-3 col-sm-offset-1 index-list-box">
       <h5>Recently viewed</h5>
         <% @recently_viewed.each do |rv| %>
-          <p>><%= link_to rv.title, record_path(rv.id) %></p>
-        <% end %>
+          <div class="index-list-entry">><%= link_to rv.title, record_path(rv.id), :class=>"list-item-link" %><br>
+            <% rv.topics.each do |rvtop| %>
+              <%= link_to rvtop.name+' ', topic_path(rvtop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
+            <% end %>
+          </div>
+      <% end %>
     </div>
-    <div class="col-sm-3 col-sm-offset-1">
+    <div class="col-sm-3 col-sm-offset-1 index-list-box">
       <h5>Recently added</h5>
         <% @recently_added.each do |ra| %>
-          <div style="border:1px solid grey; border-radius:10px;padding:3px;padding-left:5px;">><%= link_to ra.title, record_path(ra.id) %><br>
+          <div class="index-list-entry">><%= link_to ra.title, record_path(ra.id), :class=>"list-item-link" %><br>
             <% ra.topics.each do |ratop| %>
-              <%= link_to ratop.name+' ', topic_path(ratop.id), :class=>"btn btn-xs", :style => "background-color:purple; color:white;" %>&nbsp;
+              <%= link_to ratop.name+' ', topic_path(ratop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
             <% end %>
         </div>
       <% end %>
     </div>
-  </div>
+  </div> <!-- close row -->
 
 
-</div>
+</div> <!-- close container -->
 
 
 
