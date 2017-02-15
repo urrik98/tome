@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  before_action :authenticate_user!
 
   # GET /topics
   # GET /topics.json
@@ -14,7 +15,6 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
-    @topic = Topic.new
   end
 
   # GET /topics/1/edit
@@ -24,7 +24,6 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(topic_params)
 
     respond_to do |format|
       if @topic.save
@@ -63,9 +62,7 @@ class TopicsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_topic
-      @topic = Topic.find(params[:id])
-    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params

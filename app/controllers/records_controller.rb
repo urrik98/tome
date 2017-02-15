@@ -1,5 +1,6 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  before_action :authenticate_user!
 
   # GET /records
   # GET /records.json
@@ -14,11 +15,11 @@ class RecordsController < ApplicationController
   # GET /records/1
   # GET /records/1.json
   def show
+    @record.update(times_viewed: @record.times_viewed + 1)
   end
 
   # GET /records/new
   def new
-    @record = Record.new
   end
 
   # GET /records/1/edit
@@ -28,10 +29,9 @@ class RecordsController < ApplicationController
   # POST /records
   # POST /records.json
   def create
-    @record = Record.new(record_params)
-    @record.times_viewed = 0
-    @tags = @record.technology.split(', ')
 
+    @record.user_id = current_user.id
+    @tags = @record.technology.split(', ')
 
     respond_to do |format|
       if @record.save
@@ -45,7 +45,7 @@ class RecordsController < ApplicationController
             @record.tags.create(topic_id: @topic.id)
           end
         end
-        format.html { redirect_to @record, notice: 'Record was successfully created.' }
+        format.html { redirect_to @records, notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new }
@@ -57,6 +57,7 @@ class RecordsController < ApplicationController
   # PATCH/PUT /records/1
   # PATCH/PUT /records/1.json
   def update
+
     respond_to do |format|
       if @record.update(record_params)
         format.html { redirect_to @record, notice: 'Record was successfully updated.' }
@@ -80,10 +81,6 @@ class RecordsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_record
-      @record = Record.find(params[:id])
-      @record.update_attribute(:times_viewed, @record.times_viewed + 1)
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div class='container'>
+
+  <div class='row'>
+    <div class='col-sm-4 col-sm-offset-4'>
+      <h3>Journal entries</h3>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="col-sm-4 col-sm-offset-4">
+      <% @monographs.each do |m| %>
+        <div class='index-list-entry'>
+          <%= link_to m.created_at.strftime('%B %d, %Y')+' '+m.title, monograph_path(m.id) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+
+<%= link_to 'New Monograph', new_monograph_path %>

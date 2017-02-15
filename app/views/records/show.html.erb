@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
-      <%= @record.body %>
+      <%= simple_format(@record.body) %>
     </div>
   </div>
 
@@ -17,9 +17,11 @@
 
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
+      <p>Topics:
       <% @record.topics.each do |t| %>
         <%= link_to t.name, topic_path(t.id), :class=>"btn btn-xs btn-tag" %>
       <% end %>
+    </p>
     </div>
   </div>
 

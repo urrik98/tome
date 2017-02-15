@@ -10,34 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116010927) do
+ActiveRecord::Schema.define(version: 20170209045556) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "monographs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "records", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.text     "title"
     t.text     "body"
     t.text     "project"
     t.integer  "times_viewed"
     t.text     "technology"
-    t.boolean  "ruby"
-    t.boolean  "ruby_on_rails"
-    t.boolean  "html"
-    t.boolean  "css"
-    t.boolean  "linux"
-    t.boolean  "deployment"
-    t.boolean  "php"
-    t.boolean  "sql"
-    t.boolean  "mysql"
-    t.boolean  "postgresql"
-    t.boolean  "javascript"
-    t.boolean  "jquery"
-    t.boolean  "nodejs"
-    t.boolean  "osx"
-    t.boolean  "sqlite3"
-    t.boolean  "testing"
-    t.boolean  "algorithm"
-    t.boolean  "windows"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_records_on_user_id", using: :btree
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tags", force: :cascade do |t|
@@ -45,8 +46,8 @@ ActiveRecord::Schema.define(version: 20170116010927) do
     t.integer  "record_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["record_id"], name: "index_tags_on_record_id"
-    t.index ["topic_id"], name: "index_tags_on_topic_id"
+    t.index ["record_id"], name: "index_tags_on_record_id", using: :btree
+    t.index ["topic_id"], name: "index_tags_on_topic_id", using: :btree
   end
 
   create_table "topics", force: :cascade do |t|
@@ -55,4 +56,27 @@ ActiveRecord::Schema.define(version: 20170116010927) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "role_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["role_id"], name: "index_users_on_role_id", using: :btree
+  end
+
+  add_foreign_key "tags", "records"
+  add_foreign_key "tags", "topics"
+  add_foreign_key "users", "roles"
 end

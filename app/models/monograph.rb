@@ -1,0 +1,2 @@
+class Monograph < ApplicationRecord
+end

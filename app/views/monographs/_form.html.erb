@@ -1,0 +1,40 @@
+<%= form_for(monograph) do |f| %>
+  <% if monograph.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(monograph.errors.count, "error") %> prohibited this monograph from being saved:</h2>
+
+      <ul>
+      <% monograph.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class='col-sm-2 col-sm-offset-1'>
+      <%= f.label :title, "Title" %>
+    </div>
+    <div class='col-sm-8'>
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class='col-sm-2 col-sm-offset-1'>
+      <%= f.label :body, "Body" %>
+    </div>
+    <div class='col-sm-8'>
+      <%= f.text_area :body, :class => 'form-control' %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class='row'>
+    <div class="actions col-sm-2 col-sm-offset-1">
+      <%= f.submit "Enter", :class =>"btn btn-sm btn-tag" %>
+    </div>
+  </div>
+<% end %>

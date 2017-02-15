@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
+
+  scope "/admin" do
+    resources :users
+  end
+  resources :roles
+  get 'navpage/main'
+
   resources :records do
     resources :tags
   end
@@ -7,5 +15,11 @@ Rails.application.routes.draw do
     resources :tags
   end
 
-  root 'records#index'
+  resources :monographs
+
+  authenticated :user do
+    root :to => 'records#index', as: :authenticated_root
+  end
+
+  root 'navpage#main'
 end
