@@ -2,22 +2,22 @@
 <div class="container">
 
     <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
+      <div class="col-md-10 col-md-offset-1">
         <h1 class="title-link"><%= link_to "Technopedia", records_path %></h1>
       </div>
     </div>
 
 
   <div class="row">
-    <div class="col-sm-3 col-sm-offset-1">
+    <div class="col-md-3 col-md-offset-1">
       <input class="form-control" type="search" placeholder="search disabled" disabled />
     </div>
-    <div class="col-sm-3 col-sm-offset-1">
+    <div class="col-md-3 col-md-offset-1">
       <% if can? :create, Record %>
-        <%= link_to "Create a new record", new_record_path, :class =>"btn btn-sm btn-tag" %>
+        <%= link_to "Create a new record", new_record_path, :class =>"btn btn-md btn-tag" %>
       <% end %>
     </div>
-    <div class="col-sm-2 col-sm-offset-2">
+    <div class="col-md-2 col-md-offset-2">
       <h5><%= @records.count %>&nbsp;total records</h5>
     </div>
   </div>
@@ -25,7 +25,7 @@
   <hr>
 
   <div class="row">
-    <div class="col-sm-11 col-sm-offset-1 index-list-box">
+    <div class="col-md-11 col-md-offset-1 index-list-box">
       <h5>Topic: # of entries</h5>
       <div class="index-list-entry">
         <% @topics.each do |t| %>
@@ -42,7 +42,7 @@
 
   <div class="row">
 
-    <div class="col-sm-3 col-sm-offset-1 index-list-box">
+    <div class="col-md-3 col-md-offset-1 index-list-box">
       <h5>Most frequently viewed</h5>
         <% @frequently_viewed.each do |fv| %>
           <div class="index-list-entry"><%= link_to fv.times_viewed.to_s+' > '+fv.title, record_path(fv.id), :class=>"list-item-link" %><br>
@@ -52,7 +52,7 @@
           </div>
         <% end %>
     </div>
-    <div class="col-sm-3 col-sm-offset-1 index-list-box">
+    <div class="col-md-3 col-md-offset-1 index-list-box">
       <h5>Recently viewed</h5>
         <% @recently_viewed.each do |rv| %>
           <div class="index-list-entry"><%= link_to rv.updated_at.strftime('%b %d, %y')+' > '+rv.title, record_path(rv.id), :class=>"list-item-link" %><br>
@@ -62,7 +62,7 @@
           </div>
       <% end %>
     </div>
-    <div class="col-sm-3 col-sm-offset-1 index-list-box">
+    <div class="col-md-3 col-md-offset-1 index-list-box">
       <h5>Recently added</h5>
         <% @recently_added.each do |ra| %>
           <div class="index-list-entry"><%= link_to ra.created_at.strftime('%b %d, %y')+' > '+ra.title, record_path(ra.id), :class=>"list-item-link" %><br>
