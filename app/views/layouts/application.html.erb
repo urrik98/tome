@@ -18,7 +18,7 @@
       </div>
 
       <div class='row'>
-        <div class='col-sm-4 col-sm-offset-8'>
+        <div class='col-md-4 col-md-offset-8'>
           <% if user_signed_in? %>
             Signed in as <%= current_user.name %>.&nbsp;
             <%= link_to "Edit profile", edit_user_registration_path, :class =>"btn btn-xs btn-tag" %> Not you?
@@ -33,7 +33,7 @@
 
         </div>
       </div>
-      
+
     </div>
               <%= yield %>
   </body>
