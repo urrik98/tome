@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tome</title>
+    <title>My Tome</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,16 +9,21 @@
   </head>
 
   <body>
+
+    <div class='container-fluid'>
+
+      <div class='row'>
+        <%= link_to root_path do %>
+          <%= image_tag 'blue-banner-2.png', :class => 'img-responsive' %>
+          <% end %>
+      </div>
+
+    </div>
+
     <div class='container'>
 
       <div class='row'>
-        <h6 class='text-center'>
-          <%= link_to 'Technopedia', records_path %> 
-        </h6>
-      </div>
-
-      <div class='row'>
-        <div class='col-md-4 col-md-offset-8'>
+        <div class='col-md-4 col-md-offset-8' style="margin-top:7px;">
           <% if user_signed_in? %>
             Signed in as <%= current_user.name %>.&nbsp;
             <%= link_to "Edit profile", edit_user_registration_path, :class =>"btn btn-xs btn-tag" %> Not you?
@@ -30,7 +35,6 @@
           <% flash.each do |name, msg| %>
             <%= content_tag :div, msg, id: "flash_#{name}" %>
           <% end %>
-
         </div>
       </div>
 
