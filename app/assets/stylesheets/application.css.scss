@@ -74,13 +74,18 @@
   font-size:10em;
 }
 .nav-icon, .nav-icon-text {
-  color:#035096
+
 }
 .nav-div {
   border:1px solid #bdbdbd;
   border-radius:8%;
   box-shadow: 10px 10px 5px #888888;
   background-color: white;
+  color:#3137FD;
+  :hover {
+    color:#3137FD;
+    text-decoration:none;
+  }
 }
 .footer-div {
   height:150px;
