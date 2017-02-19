@@ -31,6 +31,11 @@
    border:1px solid white;
  }
 
+ .btn-white {
+   background-color: white;
+   color: #0038A8!important;
+ }
+
  .index-list-box {
    border:1px solid grey;
    border-radius:10px;
@@ -64,3 +69,21 @@
    color: #4985c2;
    background-color: white;
  }
+
+.nav-icon {
+  font-size:10em;
+}
+.nav-icon, .nav-icon-text {
+  color:#035096
+}
+.nav-div {
+  border:1px solid #bdbdbd;
+  border-radius:8%;
+  box-shadow: 10px 10px 5px #888888;
+  background-color: white;
+}
+.footer-div {
+  height:150px;
+  background-color: #001a33;
+  border-top:1px solid black;
+}

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :monographs
 
   authenticated :user do
-    root :to => 'records#index', as: :authenticated_root
+    root :to => 'navpage#main', as: :authenticated_root
   end
 
   devise_scope :user do
