@@ -21,5 +21,7 @@ Rails.application.routes.draw do
     root :to => 'records#index', as: :authenticated_root
   end
 
-  root 'navpage#main'
+  devise_scope :user do
+    root :to => 'devise/sessions#new'
+  end
 end
