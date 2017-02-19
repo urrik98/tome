@@ -6,9 +6,9 @@ class RecordsController < ApplicationController
   # GET /records.json
   def index
     @records = Record.all
-    @recently_added = Record.order("created_at DESC").limit(15)
-    @frequently_viewed = Record.order("times_viewed DESC").limit(15)
-    @recently_viewed = Record.order("updated_at DESC").limit(15)
+    @recently_added = Record.order("created_at DESC").limit(8)
+    @frequently_viewed = Record.order("times_viewed DESC").limit(8)
+    @recently_viewed = Record.order("updated_at DESC").limit(8)
     @topics = Topic.all
   end
 

@@ -11,3 +11,7 @@ r2 = Role.create({name: "Editor", description: "Can read and create records. Can
 r3 = Role.create({name: "Admin", description: "Can perform any CRUD operation on any resource"})
 
 u1 = User.create({name: "Lord Urrik", email: "urrik@lord.com", password: "Deathtongue98", password_confirmation: "Deathtongue98", role_id: r3.id})
+
+30.times do
+  @rec = Record.create({title: Faker::Book.title, body: Faker::Lorem.paragraph(3, false, 3), user_id: u1.id})
+end
