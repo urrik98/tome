@@ -12,8 +12,9 @@
       <div class="tab-content">
         <div id="recently_added" class="tab-pane fade in active record-list-div">
           <ul style="list-style-type:none; padding-left:5px;">
+            <br>
             <% @recently_added.each do |ra| %>
-              <li><%= link_to ra.created_at.strftime('%b %d, %y')+' > '+ra.title, record_path(ra.id), :class=>"list-item-link" %><br>
+              <li class="record-list-li"><%= link_to ra.created_at.strftime('%b %d, %y')+' > '+ra.title, record_path(ra.id), :class=>"list-item-link" %><br>
                 <% ra.topics.each do |ratop| %>
                   <%= link_to ratop.name+' ', topic_path(ratop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
                 <% end %>
@@ -23,8 +24,9 @@
         </div>
         <div id="recently_viewed" class="tab-pane fade in record-list-div">
           <ul style="list-style-type:none; padding-left:5px;">
+            <br>
             <% @recently_viewed.each do |rv| %>
-              <li><%= link_to rv.updated_at.strftime('%b %d, %y')+' > '+rv.title, record_path(rv.id), :class=>"list-item-link" %><br>
+              <li class="record-list-li"><%= link_to rv.updated_at.strftime('%b %d, %y')+' > '+rv.title, record_path(rv.id), :class=>"list-item-link" %><br>
                 <% rv.topics.each do |rvtop| %>
                   <%= link_to rvtop.name+' ', topic_path(rvtop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
                 <% end %>
@@ -34,8 +36,9 @@
         </div>
         <div id="most_viewed" class="tab-pane fade in record-list-div">
           <ul style="list-style-type:none; padding-left:5px;">
+            <br>
             <% @most_viewed.each do |mv| %>
-              <li><%= link_to mv.times_viewed.to_s+' > '+mv.title, record_path(mv.id), :class=>"list-item-link" %><br>
+              <li class="record-list-li"><%= link_to mv.times_viewed.to_s+' > '+mv.title, record_path(mv.id), :class=>"list-item-link" %><br>
                 <% mv.topics.each do |mvtop| %>
                   <%= link_to mvtop.name+' ', topic_path(mvtop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
                 <% end %>
