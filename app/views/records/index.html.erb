@@ -15,10 +15,12 @@
             <br>
             <% @recently_added.each do |ra| %>
               <li class="record-list-li"><%= link_to ra.created_at.strftime('%b %d, %y')+' > '+ra.title, record_path(ra.id), :class=>"list-item-link" %><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <% ra.topics.each do |ratop| %>
                   <%= link_to ratop.name+' ', topic_path(ratop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
                 <% end %>
               </li>
+              <hr>
             <% end %>
           </ul>
         </div>
@@ -27,6 +29,7 @@
             <br>
             <% @recently_viewed.each do |rv| %>
               <li class="record-list-li"><%= link_to rv.updated_at.strftime('%b %d, %y')+' > '+rv.title, record_path(rv.id), :class=>"list-item-link" %><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <% rv.topics.each do |rvtop| %>
                   <%= link_to rvtop.name+' ', topic_path(rvtop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
                 <% end %>
@@ -39,6 +42,7 @@
             <br>
             <% @most_viewed.each do |mv| %>
               <li class="record-list-li"><%= link_to mv.times_viewed.to_s+' > '+mv.title, record_path(mv.id), :class=>"list-item-link" %><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <% mv.topics.each do |mvtop| %>
                   <%= link_to mvtop.name+' ', topic_path(mvtop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
                 <% end %>
@@ -50,12 +54,33 @@
       </div> <!-- close tab-content div -->
     </div> <!-- close list-div -->
 
+    <div class="col-md-2 col-md-offset-1">
+      <br><br><br>
+      <div class="record-index-nav-div">
+        <%= link_to new_record_path do %>
+          <h1 class="text-center record-index-nav-icon">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+          </h1>
+          <h3 class="text-center nav-icon-text">New Record</h3>
+        <% end %>
+      </div>
+
+      <br><br><br>
+
+      <div class="record-index-nav-div">
+        <%= link_to topics_path do %>
+          <h1 class="text-center record-index-nav-icon">
+            <span class="glyphicon glyphicon-globe"></span>
+          </h1>
+          <h3 class="text-center nav-icon-text">Topics List</h3>
+        <% end %>
+      </div>
+    </div>
 
   </div> <!-- close row -->
 
-
-
   <div class="row">
+
 
   </div>
 
