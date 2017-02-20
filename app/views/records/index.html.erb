@@ -33,6 +33,7 @@
                 <% rv.topics.each do |rvtop| %>
                   <%= link_to rvtop.name+' ', topic_path(rvtop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
                 <% end %>
+                <hr>
               </li>
             <% end %>
           </ul>
@@ -46,6 +47,7 @@
                 <% mv.topics.each do |mvtop| %>
                   <%= link_to mvtop.name+' ', topic_path(mvtop.id), :class=>"btn btn-xs btn-tag" %>&nbsp;
                 <% end %>
+                <hr>
               </li>
             <% end %>
           </ul>
