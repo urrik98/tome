@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
       <p>
         <% @topics.each do |t| %>
-          <%= link_to t.name, topic_path(t.id), :class => "btn btn-xs btn-tag" %>&nbsp;
+          <%= link_to t.name, topic_path(t.id), :class => "btn btn-sm btn-tag" %>&nbsp;
         <% end %>
       </p>
     </div>
