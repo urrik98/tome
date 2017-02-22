@@ -1,25 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Topics</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @topics.each do |topic| %>
-      <tr>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Topic', new_topic_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        <% @topics.each do |t| %>
+          <%= link_to t.name, topic_path(t.id), :class => "btn btn-xs btn-tag" %>&nbsp;
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
