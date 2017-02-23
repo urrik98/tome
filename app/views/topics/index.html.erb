@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1" style="margin-top:100px;">
+    <div class="col-md-10 col-md-offset-1" style="margin-top:100px;margin-bottom:100px;">
       <p>
         <% @topics.each do |t| %>
           <%= link_to t.name, topic_path(t.id), :class => "btn btn-sm btn-tag" %>&nbsp;
