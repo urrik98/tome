@@ -9,40 +9,46 @@
   </head>
 
   <body style="background-color:#fafafa">
+    <%= gflash %>
 
     <div class='container-fluid'>
-
       <div class='row'>
-        <%= link_to root_path do %>
-          <%= image_tag 'blue-banner-2.png', :class => 'img-responsive' %>
-          <% end %>
+        <%= image_tag 'red-blue banner-2.png', :class => 'img-responsive' %>
       </div>
+    </div>
+
+      <div class="nav-wrapper">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+             </button>
+             <%= link_to image_tag("tome-logo.png"), root_path %>
+           </div> <!-- close navbar-header -->
+           <div class="collapse navbar-collapse" id="collapsing-navbar-content">
+             <ul class="nav navbar-nav">
+               <li><%= link_to "Records", records_path %></li>
+               <li><%= link_to "Topics", topics_path %></li>
+             </ul>
+             <ul class="nav navbar-nav navbar-right">
+               <% if user_signed_in? %>
+                <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => "delete" %></li>
+               <% end %>
+             </ul>
+           </div>
+          </div> <!-- close container-fluid -->
+        </nav>
+      </div>
+
 
     </div>
 
+    <%= yield %>
 
-        <%= yield %>
-
-    <br>
-    <br>
-
-    <div class="container-fluid">
-      <div class="row footer-div">
-        <div class="col-md-3 col-md-offset-1">
-          <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, id: "flash_#{name}", :style => "color:white; font-size:20pt;margin-top:40px;" %>
-          <% end %>
-        </div>
-        <div class="col-md-4 col-md-offset-4" style="margin-top:50px; color:white;">
-          <% if user_signed_in? %>
-            Signed in as <%= current_user.name %>.&nbsp;
-            <%= link_to "Edit profile", edit_user_registration_path, :class =>"btn btn-xs btn-white" %> Not you?
-            <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class =>"btn btn-xs btn-white" %>
-          <% else %>
-
-          <% end %>
-        </div>
-      </div>
-    </div>
   </body>
 </html>

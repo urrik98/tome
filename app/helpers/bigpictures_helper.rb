@@ -1,0 +1,2 @@
+module BigpicturesHelper
+end
