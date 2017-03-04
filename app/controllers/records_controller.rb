@@ -45,7 +45,7 @@ class RecordsController < ApplicationController
             @record.tags.create(topic_id: @topic.id)
           end
         end
-        format.html { redirect_to records_url, notice: 'Record was successfully created.' }
+        format.html { redirect_to records_url, :gflash => {:success => 'Record was successfully created.' } }
         format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new }
