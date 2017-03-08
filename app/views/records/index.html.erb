@@ -17,7 +17,7 @@
       </div>
       <div class="row">
         <div class="col-sm-12">
-          <ul style="list-style-type:none; margin-left:65px; padding-left:0px;margin-left:10px;">
+          <ul style="list-style-type:none; margin-left:65px; padding-left:0px;margin-left:25px;">
             <% @topics.each do |t| %>
               <li><%= link_to t.name+" ("+t.tags.count.to_s+")", topic_path(t.id), :class => "topic-link" %></li>
             <% end %>
